@@ -446,29 +446,29 @@ Load a development configuration into `etcd`:
 
 ```sh
 ETCDCTL_API=3 etcdctl put /config/go_oauth2_server.json '{
-  "Database": {
-    "Type": "postgres",
-    "Host": "localhost",
-    "Port": 5432,
-    "User": "go_oauth2_server",
-    "Password": "",
-    "DatabaseName": "go_oauth2_server",
-    "MaxIdleConns": 5,
-    "MaxOpenConns": 5
-  },
-  "Oauth": {
-    "AccessTokenLifetime": 3600,
-    "RefreshTokenLifetime": 1209600,
-    "AuthCodeLifetime": 3600
-  },
-  "Session": {
-    "Secret": "test_secret",
-    "Path": "/",
-    "MaxAge": 604800,
-    "HTTPOnly": true
-  },
-  "IsDevelopment": true
-}'
+    "Database": {
+      "Type": "mysql",
+      "Host": "127.0.0.1",
+      "Port": 3306,
+      "User": "root",
+      "Password": "A123456z",
+      "DatabaseName": "go_oauth2_server",
+      "MaxIdleConns": 5,
+      "MaxOpenConns": 5
+    },
+    "Oauth": {
+      "AccessTokenLifetime": 3600,
+      "RefreshTokenLifetime": 1209600,
+      "AuthCodeLifetime": 3600
+    },
+    "Session": {
+      "Secret": "test_secret",
+      "Path": "/",
+      "MaxAge": 604800,
+      "HTTPOnly": true
+    },
+    "IsDevelopment": true
+  }'
 ```
 
 If you are using etcd API version 3, use `etcdctl put` instead of `etcdctl set`.
@@ -489,29 +489,29 @@ Load a development configuration into `consul`:
 
 ```sh
 consul kv put /config/go_oauth2_server.json '{
-  "Database": {
-    "Type": "postgres",
-    "Host": "localhost",
-    "Port": 5432,
-    "User": "go_oauth2_server",
-    "Password": "",
-    "DatabaseName": "go_oauth2_server",
-    "MaxIdleConns": 5,
-    "MaxOpenConns": 5
-  },
-  "Oauth": {
-    "AccessTokenLifetime": 3600,
-    "RefreshTokenLifetime": 1209600,
-    "AuthCodeLifetime": 3600
-  },
-  "Session": {
-    "Secret": "test_secret",
-    "Path": "/",
-    "MaxAge": 604800,
-    "HTTPOnly": true
-  },
-  "IsDevelopment": true
-}'
+   "Database": {
+     "Type": "mysql",
+     "Host": "127.0.0.1",
+     "Port": 3306,
+     "User": "root",
+     "Password": "A123456z",
+     "DatabaseName": "go_oauth2_server",
+     "MaxIdleConns": 5,
+     "MaxOpenConns": 5
+   },
+   "Oauth": {
+     "AccessTokenLifetime": 3600,
+     "RefreshTokenLifetime": 1209600,
+     "AuthCodeLifetime": 3600
+   },
+   "Session": {
+     "Secret": "test_secret",
+     "Path": "/",
+     "MaxAge": 604800,
+     "HTTPOnly": true
+   },
+   "IsDevelopment": true
+ }'
 ```
 
 Check the config was loaded properly:
