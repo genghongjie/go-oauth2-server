@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"github.com/RichardKnop/go-oauth2-server/config"
-	"github.com/RichardKnop/go-oauth2-server/database"
+	"github.com/genghongjie/go-oauth2-server/config"
+	"github.com/genghongjie/go-oauth2-server/database"
 	"github.com/jinzhu/gorm"
 )
 

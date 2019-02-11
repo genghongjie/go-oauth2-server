@@ -6,10 +6,10 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/RichardKnop/go-oauth2-server/models"
-	"github.com/RichardKnop/go-oauth2-server/oauth"
-	"github.com/RichardKnop/go-oauth2-server/oauth/tokentypes"
-	"github.com/RichardKnop/go-oauth2-server/test-util"
+	"github.com/genghongjie/go-oauth2-server/models"
+	"github.com/genghongjie/go-oauth2-server/oauth"
+	"github.com/genghongjie/go-oauth2-server/oauth/tokentypes"
+	"github.com/genghongjie/go-oauth2-server/test-util"
 	"github.com/RichardKnop/uuid"
 	"github.com/stretchr/testify/assert"
 )

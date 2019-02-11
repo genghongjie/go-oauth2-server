@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/RichardKnop/go-fixtures"
-	"github.com/RichardKnop/go-oauth2-server/util/migrations"
+	"github.com/genghongjie/go-oauth2-server/util/migrations"
 	"github.com/jinzhu/gorm"
 
 	// Drivers

@@ -3,11 +3,11 @@ package oauth_test
 import (
 	"time"
 
-	"github.com/RichardKnop/go-oauth2-server/models"
-	"github.com/RichardKnop/go-oauth2-server/oauth"
-	"github.com/RichardKnop/go-oauth2-server/oauth/roles"
-	"github.com/RichardKnop/go-oauth2-server/util"
-	pass "github.com/RichardKnop/go-oauth2-server/util/password"
+	"github.com/genghongjie/go-oauth2-server/models"
+	"github.com/genghongjie/go-oauth2-server/oauth"
+	"github.com/genghongjie/go-oauth2-server/oauth/roles"
+	"github.com/genghongjie/go-oauth2-server/util"
+	pass "github.com/genghongjie/go-oauth2-server/util/password"
 	"github.com/RichardKnop/uuid"
 	"github.com/stretchr/testify/assert"
 )

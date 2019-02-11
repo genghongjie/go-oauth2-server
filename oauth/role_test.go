@@ -1,9 +1,9 @@
 package oauth_test
 
 import (
-	"github.com/RichardKnop/go-oauth2-server/models"
-	"github.com/RichardKnop/go-oauth2-server/oauth"
-	"github.com/RichardKnop/go-oauth2-server/oauth/roles"
+	"github.com/genghongjie/go-oauth2-server/models"
+	"github.com/genghongjie/go-oauth2-server/oauth"
+	"github.com/genghongjie/go-oauth2-server/oauth/roles"
 	"github.com/stretchr/testify/assert"
 )
 

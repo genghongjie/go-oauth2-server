@@ -4,7 +4,7 @@ import (
 	"database/sql/driver"
 	"testing"
 
-	"github.com/RichardKnop/go-oauth2-server/models"
+	"github.com/genghongjie/go-oauth2-server/models"
 	"github.com/stretchr/testify/assert"
 )
 

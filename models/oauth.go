@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/RichardKnop/go-oauth2-server/util"
+	"github.com/genghongjie/go-oauth2-server/util"
 	"github.com/RichardKnop/uuid"
 	"github.com/jinzhu/gorm"
 )
