@@ -30,6 +30,7 @@ func init() {
 	}
 }
 
+//go run go-oauth2-server.go --configBackend consul runserver
 func main() {
 	// Set the CLI app commands
 	cliApp.Commands = []cli.Command{
