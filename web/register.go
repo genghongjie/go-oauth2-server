@@ -103,6 +103,7 @@ func (s *Service) deleteUser(w http.ResponseWriter, r *http.Request) {
 		response.UnauthorizedError(w, err.Error())
 		return
 	}
+
 	userId := r.FormValue("userId")
 	if userId == "" {
 		response.Error(w, "userId not found", http.StatusBadRequest)
