@@ -95,3 +95,21 @@ func (s *Service) basicAuthClient(r *http.Request) (*models.OauthClient, error) 
 
 	return client, nil
 }
+
+// Get client credentials from basic auth and try to authenticate client
+func (s *Service) BasicAuthClient(r *http.Request) (*models.OauthClient, error) {
+	// Get client credentials from basic auth
+	clientID, secret, ok := r.BasicAuth()
+	if !ok {
+		return nil, ErrInvalidClientIDOrSecret
+	}
+
+	// Authenticate the client
+	client, err := s.AuthClient(clientID, secret)
+	if err != nil {
+		// For security reasons, return a general error message
+		return nil, ErrInvalidClientIDOrSecret
+	}
+
+	return client, nil
+}

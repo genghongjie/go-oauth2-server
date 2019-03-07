@@ -91,5 +91,16 @@ func (s *Service) GetRoutes() []routes.Route {
 				newClientMiddleware(s),
 			},
 		},
+		{
+			Name:        "add_user_api",
+			Method:      "POST",
+			Pattern:     "/user",
+			HandlerFunc: s.addUser,
+		}, {
+			Name:        "delete_user_api",
+			Method:      "DELETE",
+			Pattern:     "/user",
+			HandlerFunc: s.deleteUser,
+		},
 	}
 }
