@@ -152,11 +152,11 @@ func (s *Service) createUserCommon(db *gorm.DB, roleID, username, password strin
 }
 
 func (s *Service) deleteUserCommon(db *gorm.DB, userID string) error {
-	user := &models.OauthUser{}
 	// Create the user
-	if err := db.Delete(user).Where("id = ?", userID).Error; err != nil {
+	if err := db.Where("id = ?", userID).Delete(&models.OauthUser{}).Error; err != nil {
 		return err
 	}
+
 	return nil
 }
 

@@ -103,15 +103,15 @@ func (s *Service) deleteUser(w http.ResponseWriter, r *http.Request) {
 		response.UnauthorizedError(w, err.Error())
 		return
 	}
-
-	if r.FormValue("userId") == "" {
+	userId := r.FormValue("userId")
+	if userId == "" {
 		response.Error(w, "userId not found", http.StatusBadRequest)
 		return
 	}
 
 	// Create a user
 	err = s.oauthService.DeleteUserById(
-		r.Form.Get("userId"), // password
+		userId, // userId
 	)
 	if err != nil {
 		response.Error(w, err.Error(), http.StatusInternalServerError)
