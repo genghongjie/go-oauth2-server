@@ -1,6 +1,8 @@
 package oauth
 
 import (
+	"net/http"
+
 	"github.com/genghongjie/go-oauth2-server/config"
 	"github.com/genghongjie/go-oauth2-server/models"
 	"github.com/genghongjie/go-oauth2-server/session"
@@ -26,6 +28,7 @@ type ServiceInterface interface {
 	UserExists(username string) bool
 	FindUserByUsername(username string) (*models.OauthUser, error)
 	CreateUser(roleID, username, password string) (*models.OauthUser, error)
+	DeleteUserById(userID string) error
 	CreateUserTx(tx *gorm.DB, roleID, username, password string) (*models.OauthUser, error)
 	SetPassword(user *models.OauthUser, password string) error
 	SetPasswordTx(tx *gorm.DB, user *models.OauthUser, password string) error
@@ -45,4 +48,5 @@ type ServiceInterface interface {
 	NewIntrospectResponseFromRefreshToken(refreshToken *models.OauthRefreshToken) (*IntrospectResponse, error)
 	ClearUserTokens(userSession *session.UserSession)
 	Close()
+	BasicAuthClient(r *http.Request) (*models.OauthClient, error)
 }

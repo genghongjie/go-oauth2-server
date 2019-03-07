@@ -6,10 +6,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/RichardKnop/uuid"
 	"github.com/genghongjie/go-oauth2-server/models"
 	"github.com/genghongjie/go-oauth2-server/util"
 	pass "github.com/genghongjie/go-oauth2-server/util/password"
-	"github.com/RichardKnop/uuid"
 	"github.com/jinzhu/gorm"
 )
 
@@ -58,6 +58,11 @@ func (s *Service) FindUserByUsername(username string) (*models.OauthUser, error)
 // CreateUser saves a new user to database
 func (s *Service) CreateUser(roleID, username, password string) (*models.OauthUser, error) {
 	return s.createUserCommon(s.db, roleID, username, password)
+}
+
+// CreateUser saves a new user to database
+func (s *Service) DeleteUserById(userID string) error {
+	return s.deleteUserCommon(s.db, userID)
 }
 
 // CreateUserTx saves a new user to database using injected db object
@@ -144,6 +149,15 @@ func (s *Service) createUserCommon(db *gorm.DB, roleID, username, password strin
 		return nil, err
 	}
 	return user, nil
+}
+
+func (s *Service) deleteUserCommon(db *gorm.DB, userID string) error {
+	user := &models.OauthUser{}
+	// Create the user
+	if err := db.Delete(user).Where("id = ?", userID).Error; err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *Service) setPasswordCommon(db *gorm.DB, user *models.OauthUser, password string) error {

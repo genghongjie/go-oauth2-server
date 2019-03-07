@@ -10,6 +10,8 @@ const (
 	tokensPath         = "/" + tokensResource
 	introspectResource = "introspect"
 	introspectPath     = "/" + introspectResource
+	userResource       = "user"
+	userPath           = "/" + userResource
 )
 
 // RegisterRoutes registers route handlers for the oauth service
@@ -34,4 +36,5 @@ func (s *Service) GetRoutes() []routes.Route {
 			HandlerFunc: s.introspectHandler,
 		},
 	}
+
 }

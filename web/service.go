@@ -1,11 +1,19 @@
 package web
 
 import (
+	"errors"
 	"net/http"
 
 	"github.com/genghongjie/go-oauth2-server/config"
 	"github.com/genghongjie/go-oauth2-server/oauth"
 	"github.com/genghongjie/go-oauth2-server/session"
+)
+
+var (
+	// ErrInvalidGrantType ...
+	ErrInvalidGrantType = errors.New("Invalid grant type")
+	// ErrInvalidClientIDOrSecret ...
+	ErrInvalidClientIDOrSecret = errors.New("Invalid client ID or secret")
 )
 
 // Service struct keeps variables for reuse

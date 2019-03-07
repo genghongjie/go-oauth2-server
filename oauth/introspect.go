@@ -27,7 +27,6 @@ func (s *Service) introspectToken(r *http.Request, client *models.OauthClient) (
 	if err := r.ParseForm(); err != nil {
 		return nil, err
 	}
-
 	// Get token from the query
 	token := r.Form.Get("token")
 	if token == "" {
