@@ -519,7 +519,11 @@ Check the config was loaded properly:
 ```sh
 consul kv get /config/go_oauth2_server.json
 ```
+start consul
+```sh 
+consul agent -dev -ui
 
+```
 ### Postgres
 
 ```sh
