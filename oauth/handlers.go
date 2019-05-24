@@ -14,6 +14,8 @@ var (
 	// ErrInvalidClientIDOrSecret ...
 	ErrInvalidClientIDOrSecret = errors.New("Invalid client ID or secret")
 )
+var clientID string
+var secret string
 
 // tokensHandler handles all OAuth 2.0 grant types
 // (POST /v1/oauth/tokens)
@@ -38,9 +40,10 @@ func (s *Service) tokensHandler(w http.ResponseWriter, r *http.Request) {
 		response.Error(w, ErrInvalidGrantType.Error(), http.StatusBadRequest)
 		return
 	}
-
+	clientID = r.Form.Get("client_id")
+	secret = r.Form.Get("client_secret")
 	// Client auth
-	client, err := s.basicAuthClient(r)
+	client, err := s.AuthClient(clientID, secret)
 	if err != nil {
 		response.UnauthorizedError(w, err.Error())
 		return
@@ -61,7 +64,7 @@ func (s *Service) tokensHandler(w http.ResponseWriter, r *http.Request) {
 // (POST /v1/oauth/introspect)
 func (s *Service) introspectHandler(w http.ResponseWriter, r *http.Request) {
 	// Client auth
-	client, err := s.basicAuthClient(r)
+	client, err := s.AuthClient(clientID, secret)
 	if err != nil {
 		response.UnauthorizedError(w, err.Error())
 		return
@@ -73,9 +76,8 @@ func (s *Service) introspectHandler(w http.ResponseWriter, r *http.Request) {
 		response.Error(w, err.Error(), getErrStatusCode(err))
 		return
 	}
-
 	// Write response to json
-	response.WriteJSON(w, resp, 200)
+	response.WriteJSON(w, resp.SaicUserInfo, 200)
 }
 
 // Get client credentials from basic auth and try to authenticate client

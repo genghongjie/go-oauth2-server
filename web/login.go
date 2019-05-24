@@ -85,5 +85,26 @@ func (s *Service) login(w http.ResponseWriter, r *http.Request) {
 	if loginRedirectURI == "" {
 		loginRedirectURI = "/web/admin"
 	}
-	redirectWithQueryString(loginRedirectURI, r.URL.Query(), w, r)
+	// loginRedirectURI = "http://www.baidu.com"
+	//redirectWithQueryString(loginRedirectURI, r.URL.Query(), w, r)
+
+	_, client, user, responseType, redirectURI, err := s.authorizeCommon(r)
+	query := redirectURI.Query()
+	authorizationCode, err := s.oauthService.GrantAuthorizationCode(
+		client,                       // client
+		user,                         // user
+		s.cnf.Oauth.AuthCodeLifetime, // expires in
+		redirectURI.String(),         // redirect URI
+		scope,                        // scope
+	)
+	if err != nil {
+		errorRedirect(w, r, redirectURI, "server_error", "", responseType)
+		return
+	}
+
+	// Set query string params for the redirection URL
+	query.Set("code", authorizationCode.Code)
+
+	// And we're done here, redirect
+	redirectWithQueryString(redirectURI.String(), query, w, r)
 }

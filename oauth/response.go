@@ -16,13 +16,23 @@ type AccessTokenResponse struct {
 
 // IntrospectResponse ...
 type IntrospectResponse struct {
-	Active    bool   `json:"active"`
-	Scope     string `json:"scope,omitempty"`
-	ClientID  string `json:"client_id,omitempty"`
-	Username  string `json:"username,omitempty"`
-	RoleId  string `json:"role_id,omitempty"`
-	TokenType string `json:"token_type,omitempty"`
-	ExpiresAt int    `json:"exp,omitempty"`
+	Active       bool   `json:"active"`
+	Scope        string `json:"scope,omitempty"`
+	ClientID     string `json:"client_id,omitempty"`
+	Username     string `json:"username,omitempty"`
+	RoleId       string `json:"role_id,omitempty"`
+	TokenType    string `json:"token_type,omitempty"`
+	ExpiresAt    int    `json:"exp,omitempty"`
+	SaicUserInfo *SaicUserInfo
+}
+type SaicUserInfo struct {
+	Id       string `json:"id"`
+	SaicId   string `json:"saicId"`
+	UserName string `json:"userName"`
+	PinYin   string `json:"pinYin"`
+	UserType string `json:"userType"`
+	Sex      string `json:"sex"`
+	AdAccout string `json:"adAccout"`
 }
 
 // NewAccessTokenResponse ...

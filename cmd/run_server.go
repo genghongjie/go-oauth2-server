@@ -39,12 +39,14 @@ func RunServer(configBackend string) error {
 	services.HealthService.RegisterRoutes(router, "/v1")
 	services.OauthService.RegisterRoutes(router, "/v1/oauth")
 	services.WebService.RegisterRoutes(router, "/web")
+	services.WebService.RegisterRoutes(router, "/oauth")
+	services.OauthService.RegisterRoutes(router, "/oauth/oauth")
 
 	// Set the router
 	app.UseHandler(router)
 
 	// Run the server on port , gracefully stop on SIGTERM signal
-	graceful.Run(":8080", 5*time.Second, app)
+	graceful.Run(":8081", 5*time.Second, app)
 
 	return nil
 }

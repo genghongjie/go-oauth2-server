@@ -28,7 +28,7 @@ func (s *Service) introspectToken(r *http.Request, client *models.OauthClient) (
 		return nil, err
 	}
 	// Get token from the query
-	token := r.Form.Get("token")
+	token := r.Form.Get("access_token")
 	if token == "" {
 		return nil, ErrTokenMissing
 	}
@@ -67,6 +67,7 @@ func (s *Service) NewIntrospectResponseFromAccessToken(accessToken *models.Oauth
 		TokenType: tokentypes.Bearer,
 		ExpiresAt: int(accessToken.ExpiresAt.Unix()),
 	}
+
 	if accessToken.ClientID.Valid {
 		client := new(models.OauthClient)
 		notFound := s.db.Select("`key`").First(client, accessToken.ClientID.String).
@@ -87,6 +88,16 @@ func (s *Service) NewIntrospectResponseFromAccessToken(accessToken *models.Oauth
 		introspectResponse.Username = user.Username
 		introspectResponse.RoleId = user.RoleID.String
 	}
+	var saicUserInfo = &SaicUserInfo{
+		Sex:      "0",
+		Id:       accessToken.UserID.String,
+		SaicId:   introspectResponse.Username,
+		UserType: "0",
+		AdAccout: "",
+		PinYin:   "zheshipinyin",
+		UserName: introspectResponse.Username,
+	}
+	introspectResponse.SaicUserInfo = saicUserInfo
 	return introspectResponse, nil
 }
 

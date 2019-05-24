@@ -25,14 +25,14 @@ func (s *Service) GetRoutes() []routes.Route {
 	return []routes.Route{
 		{
 			Name:        "oauth_tokens",
-			Method:      "POST",
-			Pattern:     tokensPath,
+			Method:      "GET",
+			Pattern:     "/token",
 			HandlerFunc: s.tokensHandler,
 		},
 		{
 			Name:        "oauth_introspect",
-			Method:      "POST",
-			Pattern:     introspectPath,
+			Method:      "GET",
+			Pattern:     "/userinfo",
 			HandlerFunc: s.introspectHandler,
 		},
 	}

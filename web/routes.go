@@ -40,7 +40,7 @@ func (s *Service) GetRoutes() []routes.Route {
 		{
 			Name:        "login_form",
 			Method:      "GET",
-			Pattern:     "/login",
+			Pattern:     "/oauth/authorize",
 			HandlerFunc: s.loginForm,
 			Middlewares: []negroni.Handler{
 				new(parseFormMiddleware),
@@ -51,7 +51,7 @@ func (s *Service) GetRoutes() []routes.Route {
 		{
 			Name:        "login",
 			Method:      "POST",
-			Pattern:     "/login",
+			Pattern:     "/oauth/authorize",
 			HandlerFunc: s.login,
 			Middlewares: []negroni.Handler{
 				new(parseFormMiddleware),
